@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "This application is from practicing backend and templating",
   "main": "index.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm install && node src/index.js"
+    "start": "node index.js"
   },
   "keywords": [
     "movies",
@@ -14,6 +17,10 @@
     "express",
     "handlebars"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaiwalyakoparkar/movieflix"
+  },
   "author": "Kaiwalya Koparkar",
   "license": "ISC",
   "dependencies": {
