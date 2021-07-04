@@ -9,7 +9,7 @@ const routes = express.Router();
 const movies = require(path.join(__dirname, '../data/movieData'));
 
 //Declaring the endpoints
-routes.get('/', (req, res)=> {
+routes.get('', (req, res)=> {
     //Intial response
     // res.send('Hello / is hit');
 
