@@ -23,5 +23,5 @@ app.use('/', require(path.join(__dirname, './routes/movieServer.js')));
 
 //Listening to specific port
 app.listen(port, () => {
-    console.log(`Server started on http://localhost:${port}`);
+    console.log(`Server started on ${port}`);
 })
