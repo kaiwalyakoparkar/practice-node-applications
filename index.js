@@ -11,7 +11,7 @@ app.engine('.hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
 //Specifing port to listen on
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 //Creating the endpoints
 // app.get('/', (req, res) => {
