@@ -3,6 +3,9 @@ const path = require('path');
 const app = express();
 const exphbs = require('express-handlebars');
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 const port = 3000;
 
 app.engine('.hbs', exphbs({ extname: '.hbs' }));

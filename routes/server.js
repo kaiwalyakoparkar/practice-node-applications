@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const formData = require('express-form-data');
-
 
 const home = require('../views/home.hbs');
 const signin = require('../views/signin.hbs');
@@ -13,10 +11,9 @@ router.get('/', (req, res) => {
 router.get('/signin', (req, res) => {
     res.status(200).render('signin');
 });
-// router.use(formData.stream())
+
 router.post('/signin',(req, res)=>{
-    req.body = formData.stream();
-    console.log(req.body);
+    console.log(req.body.email);
     res.status(200).send(`<h1>Got the request thanks</h1>`);
 });
 
