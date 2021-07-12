@@ -1,23 +1,20 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const formData = require('express-form-data');
 
+const home = require("../views/home.hbs");
+const signin = require("../views/signin.hbs");
 
-const home = require('../views/home.hbs');
-const signin = require('../views/signin.hbs');
-
-router.get('/', (req, res) => {
-    res.status(200).render('home');
+router.get("/", (req, res) => {
+  res.status(200).render("home");
 });
 
-router.get('/signin', (req, res) => {
-    res.status(200).render('signin');
+router.get("/signin", (req, res) => {
+  res.status(200).render("signin");
 });
 // router.use(formData.stream())
-router.post('/signin',(req, res)=>{
-    req.body = formData.stream();
-    console.log(req.body);
-    res.status(200).send(`<h1>Got the request thanks</h1>`);
+router.post("/signin", (req, res) => {
+  console.log(req.body);
+  res.status(200).send(`<h1>Got the request thanks</h1>`);
 });
 
 module.exports = router;
