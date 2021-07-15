@@ -6,7 +6,7 @@ const exphbs = require('express-handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.engine('.hbs', exphbs({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
