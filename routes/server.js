@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const env = require('dotenv').config();
 const mongoose = require('mongoose');
 
 const home = require('../views/home.hbs');
@@ -13,7 +14,7 @@ router.get('/signin', (req, res) => {
     res.status(200).render('signin');
 });
 
-mongoose.connect('mongodb://localhost:27017/Newsletter', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.MONGOURI, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection error: '));
