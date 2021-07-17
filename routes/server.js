@@ -1,55 +1,90 @@
 const express = require('express');
-const router = express.Router();
-const env = require('dotenv').config();
+const route = express.Router();
+const env = require('dotenv');
 const mongoose = require('mongoose');
 
 const home = require('../views/home.hbs');
 const signin = require('../views/signin.hbs');
+const update = require('../views/update.hbs');
+const unsub = require('../views/unsub.hbs');
+const status = require('../views/status.hbs');
 
-router.get('/', (req, res) => {
-    res.status(200).render('home');
-});
+//Mongoose connections and configs
+//Connecting to mongo db
+mongoose.connect('mongodb://localhost:27017/Newsletter', {useNewUrlParser: true, useUnifiedTopology: true});
 
-router.get('/signin', (req, res) => {
-    res.status(200).render('signin');
-});
-
-mongoose.connect(process.env.MONGOURI, {useNewUrlParser: true, useUnifiedTopology: true});
-
+//Taking in connection string
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'Connection error: '));
 
-db.once('open', function(){
-    console.log('Connection established with MongoDB successfully');
+//Handling errors and connection success events
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+    console.log('MongoDB connection establish successfully');
 });
 
-const subsSchema = new mongoose.Schema({
+//Creating schema of the mongoose
+const subSchema = new mongoose.Schema({
+    name: String,
     email: String,
-})
+    about: String,
+});
 
-subsSchema.methods.isAdded = function(){
+subSchema.methods.isAdded = function(){
     const subAdded = this.email + ' added to the list of subscribers 🥳'
 }
 
-const subscriber = mongoose.model('subscribers', subsSchema);
+//Modeling the schema to be used earlier.
+//Operation                     collection name, schema name
+const subscriber = mongoose.model('subscribers', subSchema);
 
-
-router.post('/signin',(req, res)=>{
-    // console.log(req.body.email);
-    const addSub = new subscriber({
-        email: req.body.email,
-    });
-
-    addSub.save(function(err, subscriberAdded){
-        if(err){
-            res.status(505).send('Oops! There was some problem adding you. Please try again later :(')
-            return console.error(error);
-        }
-
-        subscriberAdded.isAdded();
-    });
-
-    res.status(200).send(`<h1>You are added to the list 🎉</h1>`);
+route.get('/home', (req, res) => {
+    res.status(200).render('home');
 });
 
-module.exports = router;
+route.get('/signin', (req, res) => {
+    res.status(200).render('signin');
+});
+
+route.post('/signin', (req, res) => {
+    console.log(req.body.email+' has been added to the list');
+    const addSub = new subscriber({
+        name: req.body.fullname,
+        email:req.body.email,
+        about: req.body.about,
+    });
+
+    console.log(req.body.fullname);
+    console.log(req.body.about);
+
+    addSub.save(function(err, subAdded){
+        if(err){
+            res.status(505).send(`<h1>Oops! Some problem has occured try again after some time :( </h1>`);
+        }
+
+        subAdded.isAdded();
+    });
+
+    res.status(200).send(`<h1>Hurrey!! You are in the list 🎉</h1>`);
+});
+
+route.get('/update', (req, res) => {
+    res.status(200).render('update');
+});
+
+route.post('/update', (req, res) => {
+    const olde = req.body.oldemail;
+    const newe = req.body.newemail;
+
+    subscriber.updateOne({email: olde}, {email: newe});
+    res.status(200).send(`<h1>Email Updated Sucessfully 🎉</h1>`);
+});
+
+route.get('/unsub', (req, res) => {
+    res.status(200).render('unsub');
+});
+
+route.get('/status', (req, res) => {
+    res.status(200).render('status');
+});
+
+module.exports = route;

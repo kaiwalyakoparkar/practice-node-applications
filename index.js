@@ -1,18 +1,19 @@
 const express = require('express');
-const path = require('path');
 const app = express();
-const exphbs = require('express-handlebars');
+const env = require('dotenv').config();
+const path = require('path');
+var exphbs  = require('express-handlebars');
+
+const port = process.env.PORT;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const port = process.env.PORT || 3000;
-
-app.engine('.hbs', exphbs({ extname: '.hbs' }));
+app.engine('.hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
-app.use('/', require(path.join(__dirname, './routes/server.js')));
+app.use('/nl', require(path.join(__dirname, './routes/server.js')));
 
 app.listen(port, () => {
-    console.log(`Server started at : http://localhost:${port}`);
+    console.log(`Server started successfully on http://localhost:${port}/nl/home`);
 });

@@ -1,21 +1,24 @@
 {
-  "name": "newsletter",
+  "name": "advanced-newsletter",
   "version": "1.0.0",
-  "description": "This is my subscription page for the newsletter",
+  "description": "This is a advanced newsletter with complete backend",
   "main": "index.js",
   "scripts": {
-    "start":"node ./index.js"
+    "start": "node ./index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kaiwalyakoparkar/practice-node-applications.git"
   },
   "keywords": [
-    "nodejs",
+    "mongo",
+    "atlas",
+    "compass",
+    "mongod",
+    "mongo",
     "node",
     "express",
-    "mongoose",
-    "mongodb"
+    "express-handlebars"
   ],
   "author": "Kaiwalya Koparkar",
   "license": "MIT",
@@ -26,7 +29,6 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "express-form-data": "^2.0.17",
     "express-handlebars": "^5.3.2",
     "mongoose": "^5.13.2"
   },
