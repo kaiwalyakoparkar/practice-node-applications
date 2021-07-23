@@ -11,7 +11,7 @@ const status = require('../views/status.hbs');
 
 //Mongoose connections and configs
 //Connecting to mongo db
-const mongoConnection = process.env.MONGO_CONNECTION_STRING;
+const mongoConnection = process.env.MONGOURL;
 
 mongoose.connect(mongoConnection || 'mongodb://localhost:27017/Newsletter', {
   useNewUrlParser: true,
