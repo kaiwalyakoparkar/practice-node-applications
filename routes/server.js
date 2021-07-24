@@ -38,6 +38,10 @@ subSchema.methods.isAdded = function () {
   const subAdded = this.email + ' added to the list of subscribers 🥳';
 };
 
+subSchema.methods.isUpdated = function () {
+  const subUpdated = this.email + ' updated!'
+}
+
 //Modeling the schema to be used earlier.
 //Operation                     collection name, schema name
 const subscriber = mongoose.model('subscribers', subSchema);
@@ -58,22 +62,21 @@ route.post('/signin', (req, res) => {
     about: req.body.about,
   });
 
-  console.log(req.body.fullname);
-  console.log(req.body.about);
+  // console.log(req.body.fullname);
+  // console.log(req.body.about);
 
   addSub.save(function (err, subAdded) {
     if (err) {
       res
-        .status(505)
+        .status(500)
         .send(
           `<h1>Oops! Some problem has occured try again after some time :( </h1>`
         );
+    } else {
+      subAdded.isUpdated();
+      res.status(200).send(`<h1>Hurrey!! You are in the list 🎉</h1>`);
     }
-
-    subAdded.isAdded();
   });
-
-  res.status(200).send(`<h1>Hurrey!! You are in the list 🎉</h1>`);
 });
 
 route.get('/update', (req, res) => {
@@ -84,8 +87,18 @@ route.post('/update', (req, res) => {
   const olde = req.body.oldemail;
   const newe = req.body.newemail;
 
-  subscriber.updateOne({ email: olde }, { email: newe });
-  res.status(200).send(`<h1>Email Updated Sucessfully 🎉</h1>`);
+  subscriber.findOneAndUpdate({email: olde}, {$set : {email: newe}}, {upsert: true}, function(err, doc){
+    if (err) {
+      res
+        .status(500)
+        .send(
+          `<h1>Oops! Some problem has occured try again after some time :( </h1>`
+        );
+    } else {
+      subAdded.isAdded();
+      res.status(200).send(`<h1>Hurrey!! You are in the list 🎉</h1>`);
+    }
+  });
 });
 
 route.get('/unsub', (req, res) => {
