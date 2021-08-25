@@ -1,0 +1,36 @@
+{
+  "name": "blog-site",
+  "version": "1.0.0",
+  "description": "This is a practice blog site where all data lies in database",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js",
+    "start": "nodemon ./server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaiwalyakoparkar/practice-node-applications.git"
+  },
+  "keywords": [
+    "node",
+    "blog",
+    "express",
+    "mongodb"
+  ],
+  "author": "Kaiwalya Koparkar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kaiwalyakoparkar/practice-node-applications/issues"
+  },
+  "homepage": "https://github.com/kaiwalyakoparkar/practice-node-applications#readme",
+  "dependencies": {
+    "@cucumber/cucumber": "^7.3.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.3",
+    "mongoose": "^5.13.8",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.12",
+    "pactum": "^3.0.18"
+  }
+}
