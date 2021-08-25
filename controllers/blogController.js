@@ -19,3 +19,22 @@ exports.getAllBlogs = async (req, res) => {
 		});
 	}
 }
+
+//Creating a blog and adding it to the database
+exports.createBlog = async (req, res) => {
+	try {
+		const createdBlog = await Blog.create(req.body);
+
+		res.status(201).json({
+			status: "success",
+			data: {
+				createdBlog
+			}
+		});
+	} catch(err) {
+		res.status(400). json({
+			status: "fail",
+			message: err
+		});
+	}
+}
