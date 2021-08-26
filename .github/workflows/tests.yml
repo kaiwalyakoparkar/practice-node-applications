@@ -4,6 +4,10 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      port: 3000
+      DATABASE_CONNECTION_STRING: 'mongodb://mongodb:27017'
+      DATABASE_PASSWORD: ''
     services:
       mongodb:
         image: mongo
