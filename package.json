@@ -4,7 +4,7 @@
   "description": "This is a practice blog site where all data lies in database",
   "main": "index.js",
   "scripts": {
-    "tests": "concurrently -s -k \"node ./server.js\" \"npm test\"",
+    "tests": "concurrently -s -k \"node ./server.js\" \"sleep 3 && npm test\"",
     "test": "cucumber-js -p default",
     "start": "nodemon ./server.js",
     "prepare": "husky install"
