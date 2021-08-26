@@ -5,7 +5,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      port: 3000
+      PORT: 3000
       DATABASE_CONNECTION_STRING: 'mongodb://mongodb:27017'
       DATABASE_PASSWORD: ''
     services:
@@ -21,4 +21,4 @@ jobs:
       - name: install deps
         run: npm ci
       - name: run tests
-        run: npm test
+        run: npm run tests
