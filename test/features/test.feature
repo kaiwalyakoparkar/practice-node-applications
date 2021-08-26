@@ -5,7 +5,7 @@ Feature: API is running
     When I receive a response
     Then response should have a status 200
 
-  Scenario: Check Invali endpoint
+  Scenario: Check Invalid endpoint
     Given I make a GET request to "http://localhost:3000/"
     When I receive a response
     Then response should have a status 404
