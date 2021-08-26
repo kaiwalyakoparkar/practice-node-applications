@@ -4,6 +4,7 @@
   "description": "This is a practice blog site where all data lies in database",
   "main": "index.js",
   "scripts": {
+    "tests": "concurrently -s first -k \"node ./server.js\" \"sleep 1 && npm test\"",
     "test": "cucumber-js -p default",
     "start": "nodemon ./server.js",
     "prepare": "husky install"
@@ -26,6 +27,7 @@
   "homepage": "https://github.com/kaiwalyakoparkar/practice-node-applications#readme",
   "dependencies": {
     "@cucumber/cucumber": "^7.3.1",
+    "concurrently": "^6.2.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.3",
