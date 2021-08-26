@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PORT: 3000
-      DATABASE_CONNECTION_STRING: 'mongodb://mongodb:27017'
+      DATABASE_CONNECTION_STRING: 'mongodb://localhost:27017'
       DATABASE_PASSWORD: ''
     services:
       mongodb:
