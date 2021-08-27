@@ -1,14 +1,24 @@
 const path = require('path');
 const Blog = require(path.join(__dirname, '../models/blogModel.js'));
+const home = require(path.join(__dirname, '../views/home.hbs'));
 
 //Getting all the blogs from the database
 exports.getAllBlogs = async (req, res) => {
 	try {
 		const blogs = await Blog.find();
 
-		res.status(200).json({
-			status: 'success',
-			data: {
+		//For API (JSON returning purpose)
+		// res.status(200).json({
+		// 	status: 'success',
+		// 	data: {
+		// 		blogs,
+		// 	},
+		// 	// blogs,
+		// });
+
+		//For app purpose (Server side rendering)
+		res.status(200).render('home', {
+			blogs: {
 				blogs,
 			},
 		});
@@ -96,3 +106,7 @@ exports.deteleBlog = async (req, res) => {
 		});
 	}
 };
+
+// {{#each blogs}}
+//   {{this.title}}
+// {{/each}}
