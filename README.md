@@ -1,3 +1,3 @@
-# Practice Blog site
+# Practice Node Application
 
-This is a blog site made for practice purpose
+This repo consists of my expreriments on topics and techs I am currently learning
